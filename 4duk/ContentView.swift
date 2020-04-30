@@ -7,10 +7,37 @@
 //
 
 import SwiftUI
+import AVFoundation
+
+var player = Player()
 
 struct ContentView: View {
+    @State var playing = "play"
+
     var body: some View {
-        Text("Hello, World!")
+        Group {
+            Button(action: {
+                player?.toggle()
+                if player!.isPlaying {
+                    self.playing = "pause"
+                } else {
+                    self.playing = "play"
+                }
+            }) {
+                HStack {
+                    Image(systemName: "\(self.playing)")
+                        .frame(width: 12, height: 12)
+                    Text("4duk")
+                        .fontWeight(.bold)
+                        .font(.system(.body, design: .monospaced))
+                        .foregroundColor(.white)
+                } // HStack
+                    .padding()
+                    .background(Color.orange)
+                    .padding(10)
+                    .border(Color.orange, width: 5)
+            } // Button
+        } // Group
     }
 }
 
